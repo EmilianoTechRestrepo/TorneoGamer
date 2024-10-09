@@ -21,7 +21,13 @@ const GroupManagement = () => {
 
   const handleUpdatePaymentStatus = (id, currentStatus) => {
     const newStatus = !currentStatus; 
-    dispatch(updatePaymentStatus(id, newStatus));
+    dispatch(updatePaymentStatus(id, newStatus))
+      .then(() => {
+        dispatch(fetchGroups()); // Volver a cargar los grupos después de la actualización
+      })
+      .catch(error => {
+        console.error("Error al actualizar el estado de pago:", error);
+      });
   };
 
   const handleDeleteGroup = (id) => {
