@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createGroup } from '../redux/Actions/actions'; // Asegúrate de ajustar la ruta
 
 const ParticipantsForm = ({ onSubmit }) => {
+  const dispatch = useDispatch(); // Inicializa dispatch
   const [groupName, setGroupName] = useState('');
   const [participants, setParticipants] = useState([{ username: '', age: '', email: '', phone: '' }]);
   const [error, setError] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleParticipantChange = (index, field, value) => {
     const updatedParticipants = participants.map((participant, i) =>
@@ -25,10 +31,14 @@ const ParticipantsForm = ({ onSubmit }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (groupName === '') {
       setError('Debes ingresar un nombre de grupo.');
+      return;
+    }
+    if (email === '') { // Validación para el email
+      setError('Debes ingresar un email del líder del grupo.');
       return;
     }
     if (participants.length !== 4) {
@@ -36,7 +46,19 @@ const ParticipantsForm = ({ onSubmit }) => {
       return;
     }
     setError('');
-    onSubmit({ groupName, participants });
+
+    // Preparar el objeto groupData
+    const groupData = { groupName, email, participants };
+    
+    console.log("Enviando el siguiente body al backend:", groupData);
+
+    // Despachar la acción createGroup
+    try {
+      await dispatch(createGroup(groupData)); // Usa dispatch para llamar a la acción
+      onSubmit(groupData); // Llama a onSubmit solo después de crear el grupo
+    } catch (error) {
+      setError('Error al crear el grupo.'); // Manejo de errores si es necesario
+    }
   };
 
   return (
@@ -50,6 +72,16 @@ const ParticipantsForm = ({ onSubmit }) => {
           className="mt-1 block w-full p-2 border rounded"
         />
       </div>
+      <div>
+  <label className="block text-sm font-bold">Email del Líder del Grupo:</label>
+  <input
+    type="email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    className="mt-1 block w-full p-2 border rounded"
+    required // Puedes marcarlo como requerido
+  />
+</div>
       {participants.map((participant, index) => (
         <div key={index} className="border p-4 rounded mb-4">
           <h3 className="text-sm font-bold mb-2">Participante {index + 1}</h3>
@@ -110,4 +142,5 @@ const ParticipantsForm = ({ onSubmit }) => {
 };
 
 export default ParticipantsForm;
+
 

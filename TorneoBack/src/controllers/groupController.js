@@ -1,46 +1,56 @@
 const { Group, Participant } = require('../data');
+const { Op } = require('sequelize');
 
 // Controlador para crear un grupo con sus participantes
 const createGroup = async (req, res) => {
-    const { groupName, email, participants } = req.body;
-  
-    // participants será un array de objetos [{ username, age, email, phone }, ...]
-  
-    try {
-      // Verificar si algún email o teléfono de los participantes ya está registrado
-      for (const participant of participants) {
-        const existingParticipant = await Participant.findOne({
-          where: {
-            [Op.or]: [
-              { email: participant.email },
-              { phone: participant.phone }
-            ]
-          }
-        });
-  
-        if (existingParticipant) {
-          return res.status(400).json({
-            error: `Participant with email ${participant.email} or phone ${participant.phone} already exists.`
-          });
+  const { groupName, email, participants } = req.body;
+
+  // Imprimir los datos recibidos
+  console.log("Received data:", { groupName, email, participants });
+
+  // participants será un array de objetos [{ username, age, email, phone }, ...]
+  try {
+    // Verificar si algún email o teléfono de los participantes ya está registrado
+    for (const participant of participants) {
+      const existingParticipant = await Participant.findOne({
+        where: {
+          [Op.or]: [
+            { email: participant.email },
+            { phone: participant.phone }
+          ]
         }
+      });
+
+      // Imprimir si se encontró un participante existente
+      if (existingParticipant) {
+        console.log(`Existing participant found: ${existingParticipant}`);
+        return res.status(400).json({
+          error: `Participant with email ${participant.email} or phone ${participant.phone} already exists.`
+        });
       }
-  
-      // Crear el grupo
-      const newGroup = await Group.create({ groupName, email });
-  
-      // Crear los participantes asociados al grupo
-      const newParticipants = participants.map(participant => ({
-        ...participant,
-        groupId: newGroup.id,
-      }));
-  
-      await Participant.bulkCreate(newParticipants);
-  
-      return res.status(201).json({ message: 'Group and participants created successfully', group: newGroup });
-    } catch (error) {
-      return res.status(500).json({ error: 'Error creating group and participants' });
     }
-  };
+
+    // Crear el grupo
+    const newGroup = await Group.create({ groupName, email });
+    console.log("New group created:", newGroup);
+
+    // Crear los participantes asociados al grupo
+    const newParticipants = participants.map(participant => ({
+      ...participant,
+      groupId: newGroup.id,
+    }));
+
+    await Participant.bulkCreate(newParticipants);
+    console.log("Participants created:", newParticipants);
+
+    return res.status(201).json({ message: 'Group and participants created successfully', group: newGroup });
+  } catch (error) {
+    // Imprimir el error
+    console.error("Error creating group and participants:", error);
+    return res.status(500).json({ error: 'Error creating group and participants' });
+  }
+};
+
 
 // Controlador para obtener todos los grupos con sus participantes
 const getAllGroups = async (req, res) => {

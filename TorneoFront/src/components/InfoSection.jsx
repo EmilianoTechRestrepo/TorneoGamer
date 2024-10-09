@@ -4,7 +4,7 @@ import botonImagen2 from "../assets/botonImagen2.png";
 const InfoSection = () => {
   return (
     <section
-      className="relative h-screen w-full bg-cover  "
+      className=" min-h-screen w-full bg-cover bg-center"
       style={{ backgroundImage: `url(${imagen2})` }}
     >
       {/* Contenedor principal de los textos */}
@@ -19,10 +19,10 @@ const InfoSection = () => {
       </div>
 
       {/* Botón posicionado en la parte inferior */}
-      <div className="absolute bottom-8 w-full flex justify-center items-center">
+      <div className="w-full flex justify-center items-center mb-1">
         <img
           src={botonImagen2}
-          alt="botonImagen2"
+          alt="Boton"
           className="w-4/5 h-auto rounded-lg object-cover shadow-lg"
         />
       </div>

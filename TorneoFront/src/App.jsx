@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Landing from "./components/Landing"
 import Panel from "./components/Admin/Panel"
 import Login from "./components/Admin/Login/Login"
+import GroupManagement from "./components/Admin/GroupManagment";
 
 function App() {
   return (
@@ -18,10 +19,18 @@ function App() {
       />
 
       <Route
-        path="/panel/grupos"
+        path="/panel/"
         element={
           // <ProtectedRoutes>
           <Panel />
+          // </ProtectedRoutes>
+        }
+      />
+      <Route
+        path="/panel/grupos"
+        element={
+          // <ProtectedRoutes>
+          <GroupManagement />
           // </ProtectedRoutes>
         }
       />

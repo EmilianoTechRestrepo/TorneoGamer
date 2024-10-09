@@ -59,14 +59,15 @@ const rootReducer = (state = initialState, action) => {
     case FETCH_GROUP_FAIL:
       return { ...state, error: action.payload };
 
-    case UPDATE_PAYMENT_STATUS_SUCCESS:
-      return {
-        ...state,
-        groups: state.groups.map((group) =>
-          group.id === action.payload.group.id ? action.payload.group : group
-        ),
-        error: null,
-      };
+      case 'UPDATE_PAYMENT_STATUS_SUCCESS':
+        return {
+          ...state,
+          groups: state.groups.map(group =>
+            group.id === action.payload.id
+              ? { ...group, paymentStatus: action.payload.paymentStatus }
+              : group
+          ),
+        };
     case UPDATE_PAYMENT_STATUS_FAIL:
       return { ...state, error: action.payload };
 

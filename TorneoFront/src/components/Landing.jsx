@@ -1,6 +1,6 @@
 import HeaderSection from './HeaderSection';
 import InfoSection from './InfoSection';
-import GallerySection from './GallerySection';
+// import GallerySection from './GallerySection';
 import SignupSection from './SignupSection';
 
 
@@ -9,7 +9,7 @@ const Landing = () => {
       <div >
      <HeaderSection />
       <InfoSection />
-      <GallerySection />
+      {/* <GallerySection /> */}
       <SignupSection />
   
       </div>
