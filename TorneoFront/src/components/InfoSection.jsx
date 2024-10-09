@@ -4,7 +4,7 @@ import botonImagen2 from "../assets/botonImagen2.png";
 const InfoSection = () => {
   return (
     <section
-      className="relative h-screen w-full bg-cover bg-center"
+      className="relative h-screen w-full bg-cover  "
       style={{ backgroundImage: `url(${imagen2})` }}
     >
       {/* Contenedor principal de los textos */}

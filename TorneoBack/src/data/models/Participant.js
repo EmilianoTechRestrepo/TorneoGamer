@@ -1,27 +1,22 @@
 const { DataTypes } = require("sequelize");
-const bcrypt = require('bcrypt');
 
 module.exports = (sequelize) => {
-  const User = sequelize.define("User", {
+  sequelize.define("Participant", {
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
     },
-    password: {
+    phone: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    role: {
-      type: DataTypes.STRING,
-      defaultValue: "admin",
-    },
   });
-
-  
-
-  return User;
 };
-
-
-

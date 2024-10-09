@@ -51,7 +51,18 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { User, Group } = sequelize.models;
+
+
+const { User, Group, Participant } = sequelize.models;
+
+// Relación uno a muchos entre Group y Participant
+Group.hasMany(Participant, {
+  foreignKey: 'groupId',
+  onDelete: 'CASCADE',
+});
+Participant.belongsTo(Group, {
+  foreignKey: 'groupId',
+});
 
 
 

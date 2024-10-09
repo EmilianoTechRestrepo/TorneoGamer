@@ -2,6 +2,7 @@ import imagen1 from "../assets/imagen1.png";
 import free from "../assets/free.png";
 import boton from "../assets/boton.png";
 
+
 const HeaderSection = () => {
   return (
     <section
