@@ -24,22 +24,22 @@ const SignupSection = () => {
   };
 
   return (
-    <section
+    <section id="SignupSection"
       className="min-h-screen w-full bg-cover bg-center"
       style={{ backgroundImage: `url(${imagen4})` }}
     >
-      <div className="flex flex-col items-center justify-center  h-full space-y-4 ">
+      <div className="flex flex-col md:flex-row  align-items items-center justify-center h-screen space-x-4 md: space-y-4">
         {/* Botón 1: Leer Reglamento */}
         <button
           onClick={() => handleOpenModal("regulation")}
-          className="neon-button"
+          className="neon-button mt-4 md: ml-2"
         >
-          Leer Reglamento
+        Leer Reglamento
         </button>
 
         <button
           onClick={() => handleOpenModal("participants")}
-          className={`neon-button ${
+          className={`neon-button  ${
             stepsCompleted.regulation
               ? "cursor-pointer"
               : "cursor-not-allowed opacity-50"
@@ -51,7 +51,7 @@ const SignupSection = () => {
 
         <button
           onClick={() => handleOpenModal("terms")}
-          className={`neon-button py-2 px-4  rounded transition duration-300 ${
+          className={`neon-button transition duration-300 ${
             stepsCompleted.participants
               ? "bg-blue-500 hover:bg-blue-600 text-white"
               : "bg-gray-500 text-gray-300 cursor-not-allowed"
@@ -63,7 +63,7 @@ const SignupSection = () => {
 
         <button
           onClick={() => handleOpenModal("payment")}
-          className={`neon-button py-2 px-4 rounded transition duration-300 ${
+          className={`neon-button  transition duration-300 ${
             stepsCompleted.terms
               ? "bg-blue-500 hover:bg-blue-600 text-white"
               : "bg-gray-500 text-gray-300 cursor-not-allowed"
@@ -167,7 +167,7 @@ const SignupSection = () => {
               href=""
               target="_blank"
               rel="noopener noreferrer"
-              className="neon-button py-2 px-4 rounded hover:bg-green-600 transition duration-300"
+              className="neon-button  hover:bg-green-600 transition duration-300"
             >
               Ir a Página de Pago
             </a>

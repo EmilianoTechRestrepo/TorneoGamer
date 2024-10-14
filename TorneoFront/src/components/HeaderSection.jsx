@@ -11,7 +11,7 @@ const HeaderSection = () => {
     >
       {/* Primer título */}
       <div className="flex items-center justify-center h-full bg-opacity-50">
-        <h2 className="text-3xl sm:text-3xl md:text-3xl lg:text-3xl font-Sixtyfour mt-16 text-white">
+        <h2 className="text-3xl sm:text-3xl md:text-3xl lg:text-3xl font-Sixtyfour mt-16 text-white md:justify-center">
           Primer Torneo
         </h2>
       </div>
@@ -25,6 +25,7 @@ const HeaderSection = () => {
 
       {/* Imagen centrada */}
       <div className="w-full flex justify-center items-center mb-4">
+      
         <img
           src={free}
           alt="Free"
@@ -40,12 +41,15 @@ const HeaderSection = () => {
         </h2>
       </div>
 
-     <div className="w-full flex justify-center items-center mb-1">
+     <div className="w-full flex justify-center items-center mb-1 ">
+     <a href="#SignupSection">
         <img
           src={boton}
           alt="Boton"
-          className="w-4/5 h-auto rounded-lg object-cover shadow-lg"
+          className=" h-auto rounded-lg shadow-lg"
         />
+
+        </a>
       </div>
       
     </section>
