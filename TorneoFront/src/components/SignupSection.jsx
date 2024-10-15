@@ -1,8 +1,10 @@
-import  { useState } from "react";
+import { useState } from "react";
 import imagen4 from "../assets/imagen4.png";
 import Modal from "./Modal";
 import ParticipantsForm from "./ParticipantsForm";
+
 import "./SignupSection.css";
+import DownloadPDFButton from "./DownloadPDButtonF";
 
 const SignupSection = () => {
   const [activeModal, setActiveModal] = useState(null);
@@ -24,7 +26,8 @@ const SignupSection = () => {
   };
 
   return (
-    <section id="SignupSection"
+    <section
+      id="SignupSection"
       className="min-h-screen w-full bg-cover bg-center"
       style={{ backgroundImage: `url(${imagen4})` }}
     >
@@ -34,7 +37,7 @@ const SignupSection = () => {
           onClick={() => handleOpenModal("regulation")}
           className="neon-button mt-4 md: ml-2"
         >
-        Leer Reglamento
+          Leer Reglamento
         </button>
 
         <button
@@ -174,9 +177,11 @@ const SignupSection = () => {
           </Modal>
         )}
       </div>
+      <div>
+        <DownloadPDFButton />
+      </div>
     </section>
   );
 };
 
 export default SignupSection;
-

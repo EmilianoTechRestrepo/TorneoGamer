@@ -6,7 +6,7 @@ const createGroup = async (req, res) => {
   const { groupName, email, participants } = req.body;
 
   // Imprimir los datos recibidos
-  console.log("Received data:", { groupName, email, participants });
+  
 
   // participants será un array de objetos [{ username, age, email, phone }, ...]
   try {
@@ -23,7 +23,7 @@ const createGroup = async (req, res) => {
 
       // Imprimir si se encontró un participante existente
       if (existingParticipant) {
-        console.log(`Existing participant found: ${existingParticipant}`);
+        
         return res.status(400).json({
           error: `Participant with email ${participant.email} or phone ${participant.phone} already exists.`
         });
@@ -32,7 +32,7 @@ const createGroup = async (req, res) => {
 
     // Crear el grupo
     const newGroup = await Group.create({ groupName, email });
-    console.log("New group created:", newGroup);
+   
 
     // Crear los participantes asociados al grupo
     const newParticipants = participants.map(participant => ({
@@ -41,7 +41,7 @@ const createGroup = async (req, res) => {
     }));
 
     await Participant.bulkCreate(newParticipants);
-    console.log("Participants created:", newParticipants);
+    
 
     return res.status(201).json({ message: 'Group and participants created successfully', group: newGroup });
   } catch (error) {
