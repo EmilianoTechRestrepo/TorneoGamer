@@ -2,6 +2,7 @@ import HeaderSection from './HeaderSection';
 import InfoSection from './InfoSection';
 // import GallerySection from './GallerySection';
 import SignupSection from './SignupSection';
+import Footer from './Footer';
 
 
 const Landing = () => {
@@ -11,7 +12,7 @@ const Landing = () => {
       <InfoSection />
       {/* <GallerySection /> */}
       <SignupSection />
-  
+      <Footer />
       </div>
     );
   };

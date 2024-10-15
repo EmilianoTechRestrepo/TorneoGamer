@@ -8,7 +8,7 @@ require('dotenv').config();
 const { JWT_SECRET_KEY } = require('./config/envs');
 const path = require('path');
 
-console.log('JWT_SECRET_KEY:', JWT_SECRET_KEY);
+
 const app = express();
 
 app.use(express.json());
