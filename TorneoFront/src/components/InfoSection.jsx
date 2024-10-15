@@ -20,13 +20,12 @@ const InfoSection = () => {
 
       {/* Botón posicionado en la parte inferior */}
       <div className="w-full flex justify-center items-center mb-1">
-      <a href="#SignupSection">
-        <img
-          src={botonImagen2}
-          alt="Boton"
-          className="w-4/5 h-auto rounded-lg object-cover shadow-lg"
-        />
-
+        <a href="#SignupSection">
+          <img
+            src={botonImagen2}
+            alt="Boton"
+            className="w-3/3 sm:w-1/2 md:w-1/1 lg:w-1/1 h-auto mx-auto rounded-lg shadow-lg"
+          />
         </a>
       </div>
     </section>

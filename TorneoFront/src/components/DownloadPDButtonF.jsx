@@ -14,7 +14,7 @@ const DownloadPDFButton = () => {
         onMouseLeave={() => setIsHovered(false)}
       >
         {isHovered ? (
-          <span className="hover-text">Imprime la Autorización</span>
+          <span className="hover-text">Descarga la Autorización</span>
         ) : (
           <span className="default-text">Importante</span>
         )}
