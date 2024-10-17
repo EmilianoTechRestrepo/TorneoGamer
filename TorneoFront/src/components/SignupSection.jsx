@@ -167,7 +167,7 @@ const SignupSection = () => {
           <Modal onClose={handleCloseModal}>
             <h2 className="text-lg font-bold mb-4">Realizar Pago</h2>
             <a
-              href=""
+              href="https://checkout.bold.co/payment/LNK_J0YDXTHZAG"
               target="_blank"
               rel="noopener noreferrer"
               className="neon-button  hover:bg-green-600 transition duration-300"
